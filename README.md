@@ -15,7 +15,7 @@ I am a front-end developer, also a student from Shenzhen University.
 </div>
 <br>
 
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=huangzheng2016&layout=compact)
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=abinea&layout=compact)
 
 ### Lazy Commit Map
 
