@@ -19,4 +19,4 @@ I am a front-end developer, also a student from Shenzhen University.
 
 ### Lazy Commit Map
 
-<img src="./asset/snake.gif">
+<img src="https://raw.githubusercontent.com/abinea/abinea/master/assets/snake.svg">
