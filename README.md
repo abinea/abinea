@@ -1,6 +1,10 @@
-## 👋Hello
+## Introduction
 
-I am a front-end developer, also a student from Shenzhen University.
+👋 Hello there! My name is Tabing Wang✨, currently a student in Shenzhen University.
+
+😎 I joined a programming club after I entered school and am currently wandering between several laboratories. 
+
+🤔 Mainly focused on the front-end field and curious about other fields.
 
 ### Tech Stack
 
