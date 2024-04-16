@@ -1,0 +1,62 @@
+name: Build metrics
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  schedule:
+    # https://crontab.guru/every-month
+    - cron: '0 0 1 * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Checkout action code
+        uses: actions/checkout@v4
+        with:
+          repository: lbwa/github-metrics
+          ref: main
+          token: ${{ secrets.NEW_GH_TOKEN }}
+          path: ./.github/actions/github-metrics
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4 # https://github.com/actions/setup-node
+        with:
+          node-version: 20
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          run_install: false
+
+      - name: Prepare metrics
+        run: |
+          cd ./.github/actions/github-metrics
+          pnpm i
+          pnpm build
+
+      - name: Generate metrics
+        uses: ./.github/actions/github-metrics
+
+      - name: Push artifacts
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+
+          git add public
+          git status
+
+          # git diff --quite --exit-code public
+          if git diff --name-only --staged | grep -q "public/"; then
+            git commit -m 'chore(schedule): update metrics'
+            git push origin main
+          fi
